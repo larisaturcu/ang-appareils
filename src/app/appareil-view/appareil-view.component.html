@@ -1,0 +1,24 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+    <div class="col-xs-12">
+      <h2>Mes appareils</h2>  
+      <p>Mise à jour {{lastUpdate | async | date:'yMMMMEEEEd' | uppercase}}</p>
+      <ul class="list-group" >
+        <li *ngFor>{{appareils}}</li>
+        <app-appareil 
+            *ngFor = "let app of appareils; let i = index" 
+            [indexOfAppareil] = "i"
+            [appareilName]="app.name"  
+            [appareilStatus] = "app.status"
+            [id]= "app.id"></app-appareil>
+        
+      </ul>
+      <button class="btn btn-success" 
+          [disabled]="!isAuth"
+          (click)="onAllumer()">Tout allumer</button>
+       <button class="btn btn-danger"     
+          (click)="onEteindre()">Tout eteindre</button>
+        <button class="btn btn-success" (click)="save()">Save all</button>
+        <button class="btn btn-success" (click)="onFetch()">Charger</button>
+    </div>
+  
